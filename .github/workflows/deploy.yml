@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up SSH key
+        shell: bash
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 98.81.154.86 >> ~/.ssh/known_hosts
-        shell: bash
 
       - name: Install Ansible
         run: |
@@ -27,6 +27,8 @@ jobs:
           sudo apt install -y ansible
 
       - name: Run Ansible playbook
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: false  # Optional: avoids "host key verification" prompts
         run: |
-          ansible-playbook -i ansible/inventory.yml ansible/site.yml
+          ansible-playbook -i ansible/inventory.yml ansible/site.yml --private-key ~/.ssh/id_rsa -u ubuntu
 
