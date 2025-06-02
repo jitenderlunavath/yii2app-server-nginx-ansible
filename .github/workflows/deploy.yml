@@ -16,10 +16,10 @@ jobs:
       - name: Set up SSH key
   	shell: bash
   	run: |
-    	mkdir -p ~/.ssh
-    	echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
-    	chmod 600 ~/.ssh/id_rsa
-    	ssh-keyscan -H 98.81.154.86 >> ~/.ssh/known_hosts
+    	  mkdir -p ~/.ssh
+    	  echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+    	  chmod 600 ~/.ssh/id_rsa
+    	  ssh-keyscan -H 98.81.154.86 >> ~/.ssh/known_hosts
 
 
       - name: Install Ansible
