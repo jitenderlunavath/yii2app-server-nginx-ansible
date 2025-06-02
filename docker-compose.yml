@@ -1,0 +1,12 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  yii2app:
+    build: ./yii2app
+    image: jitenderlunavath/yii2app:latest
+    ports:
+      - "8080:80"
+    restart: always
+
