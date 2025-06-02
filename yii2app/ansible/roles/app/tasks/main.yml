@@ -1,0 +1,16 @@
+- name: Copy docker-compose.yml to EC2 instance
+  copy:
+    src: "{{ playbook_dir }}/../../docker-compose.yml"
+    dest: /home/ubuntu/docker-compose.yml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+
+- name: Pull Yii2 Docker image
+  command: docker pull jitenderlunavath/yii2app:latest
+
+- name: Deploy Yii2 stack
+  command: docker stack deploy -c docker-compose.yml yii2stack
+  args:
+    chdir: /home/ubuntu
+
