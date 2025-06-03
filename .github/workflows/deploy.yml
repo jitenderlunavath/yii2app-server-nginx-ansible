@@ -21,9 +21,6 @@ jobs:
           ssh-keyscan -H 98.81.154.86 >> ~/.ssh/known_hosts
         shell: bash
 
-
-
-
       - name: Install Ansible
         run: |
           sudo apt update
