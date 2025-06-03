@@ -22,6 +22,7 @@ jobs:
           ls -la ~/.ssh
         shell: bash
 
+
       - name: Install Ansible
         run: |
           sudo apt update
