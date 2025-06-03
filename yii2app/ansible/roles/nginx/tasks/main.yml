@@ -1,0 +1,16 @@
+- name: Install NGINX
+  apt:
+    name: nginx
+    state: present
+
+- name: Copy NGINX config
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/sites-available/yii2app
+    mode: '0644'
+
+- name: Enable site and reload NGINX
+  shell: |
+    ln -sf /etc/nginx/sites-available/yii2app /etc/nginx/sites-enabled/
+    systemctl reload nginx
+
