@@ -27,8 +27,6 @@ jobs:
           sudo apt install -y ansible
 
       - name: Run Ansible playbook
-        env:
-          ANSIBLE_HOST_KEY_CHECKING: false  # Optional: avoids "host key verification" prompts
         run: |
-          ansible-playbook -i ansible/inventory.yml ansible/site.yml --private-key ~/.ssh/id_rsa -u ubuntu
+          ansible-playbook -i ansible/inventory.yml ansible/site.yml
 
